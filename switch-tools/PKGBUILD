@@ -1,0 +1,36 @@
+# Maintainer: WinterMute <davem@devkitpro.org>
+pkgname=switch-tools
+pkgver=1.4.0
+pkgrel=3
+pkgdesc='Tools for Nintendo Switch homebrew development)'
+arch=('any')
+url='https://github.com/switchbrew/switch-tools'
+license=('ISC')
+options=(!strip libtool staticlibs)
+source=("https://github.com/switchbrew/switch-tools/releases/download/v${pkgver}/switch-tools-${pkgver}.tar.bz2")
+sha256sums=('476c3dfe9d060f74da47d22bf929e1de5e3a6f11f26ee0dc516c9101ed3f0239')
+groups=('switch-dev')
+
+build() {
+
+  cd switch-tools-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  ./configure --host=$CHOST --prefix=/opt/devkitpro/tools
+
+  make
+
+}
+
+package() {
+
+  cd switch-tools-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  make DESTDIR="$pkgdir" install-strip
+
+  install -Dm644 COPYING "$pkgdir"/opt/devkitpro/licenses/$pkgname/COPYING
+  
+}
