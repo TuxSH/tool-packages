@@ -1,0 +1,35 @@
+# Maintainer: WinterMute <davem@devkitpro.org>
+pkgname=general-tools
+pkgver=1.0.2
+pkgrel=1
+pkgdesc='Tools for homebrew development)'
+arch=('any')
+url='https://github.com/devkitpro/general-tools'
+license=('ISC')
+options=(!strip libtool staticlibs)
+source=("https://github.com/devkitpro/general-tools/releases/download/v${pkgver}/general-tools-${pkgver}.tar.bz2")
+sha256sums=('333d76520c1a67fe5820c3a981fff93ea908462dc7022fb72915e447874e025f')
+groups=('gp32-dev' 'gba-dev' 'nds-dev' '3ds-dev' 'switch-dev')
+build() {
+
+  cd general-tools-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  ./configure --host=$CHOST --prefix=/opt/devkitpro/tools
+
+  make
+
+}
+
+package() {
+
+  cd general-tools-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  make DESTDIR="$pkgdir" install-strip
+
+  install -Dm644 COPYING "$pkgdir"/opt/devkitpro/licenses/$pkgname/COPYING
+  
+}
