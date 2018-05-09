@@ -1,0 +1,40 @@
+# Maintainer: WinterMute <davem@devkitpro.org>
+pkgname=ndstool
+pkgver=2.1.1
+pkgrel=2
+pkgdesc='Nintendo DS rom creation tool'
+arch=('any')
+url='https://github.com/devkitpro/ndstool'
+license=('GPL')
+options=(!strip libtool staticlibs)
+source=("https://github.com/switchbrew/ndstool/releases/download/v${pkgver}/ndstool-${pkgver}.tar.bz2")
+sha256sums=('938cd5fb2b48470d9b3d6aca3861c8863466c60996e3dafb6c58aa9937ba1ae0')
+groups=('nds-dev')
+
+if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+  depends=('tool-dlls')
+fi
+
+build() {
+
+  cd ndstool-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  ./configure --host=$CHOST --prefix=/opt/devkitpro/tools
+
+  make
+
+}
+
+package() {
+
+  cd ndstool-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  make DESTDIR="$pkgdir" install-strip
+
+  install -Dm644 COPYING "$pkgdir"/opt/devkitpro/licenses/$pkgname/COPYING
+  
+}
