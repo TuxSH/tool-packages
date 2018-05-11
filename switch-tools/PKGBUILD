@@ -4,16 +4,20 @@ pkgver=1.4.0
 pkgrel=3
 pkgdesc='Tools for Nintendo Switch homebrew development)'
 arch=('any')
-url='https://github.com/switchbrew/switch-tools'
+url="https://github.com/switchbrew/${pkgname}"
 license=('ISC')
 options=(!strip libtool staticlibs)
-source=("https://github.com/switchbrew/switch-tools/releases/download/v${pkgver}/switch-tools-${pkgver}.tar.bz2")
+source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.bz2")
 sha256sums=('476c3dfe9d060f74da47d22bf929e1de5e3a6f11f26ee0dc516c9101ed3f0239')
 groups=('switch-dev')
 
+if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+  depends=('tool-dlls')
+fi
+
 build() {
 
-  cd switch-tools-$pkgver
+  cd $pkgname-$pkgver
 
   source ~/cross-build-$CHOST.sh
 
@@ -25,7 +29,7 @@ build() {
 
 package() {
 
-  cd switch-tools-$pkgver
+  cd $pkgname-$pkgver
 
   source ~/cross-build-$CHOST.sh
 
