@@ -1,0 +1,40 @@
+# Maintainer: WinterMute <davem@devkitpro.org>
+pkgname=3dstools
+pkgver=1.1.4
+pkgrel=2
+pkgdesc='3ds tools'
+arch=('any')
+url="https://github.com/devkitpro/${pkgname}"
+license=('ISC')
+options=(!strip libtool staticlibs)
+source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.bz2")
+sha256sums=('b2ac8abf48d258d112a3ea8518a4f48032a9ff6dd39306afd5ea865ce33ada0b')
+groups=('3ds-dev')
+
+if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+  depends=('tool-dlls')
+fi
+
+build() {
+
+  cd $pkgname-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  ./configure --host=$CHOST --prefix=/opt/devkitpro/tools
+
+  make
+
+}
+
+package() {
+
+  cd $pkgname-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  make DESTDIR="$pkgdir" install-strip
+
+  install -Dm644 COPYING "$pkgdir"/opt/devkitpro/licenses/$pkgname/COPYING
+  
+}
