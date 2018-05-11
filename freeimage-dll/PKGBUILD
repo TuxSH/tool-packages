@@ -1,0 +1,18 @@
+# Maintainer: WinterMute <davem@devkitpro.org>
+pkgname=freeimage-dll
+pkgver=3.17.0
+pkgrel=1
+pkgdesc='FreeImage dll'
+arch=('any')
+url='http://freeimage.sourceforge.net'
+license=('GPL')
+options=(!strip libtool staticlibs)
+source=("https://github.com/devkitPro/buildscripts/releases/download/support-files/FreeImage-3.17.0.tar.xz")
+sha256sums=('88fd178daaa90f7706167faf76396afb091150ef61eb51c4784d6693ab232c70')
+
+package() {
+
+  mkdir -p "$pkgdir"/opt/devkitpro/tools/bin
+  cp  "$srcdir"/FreeImage.dll "$pkgdir"/opt/devkitpro/tools/bin  
+  
+}
