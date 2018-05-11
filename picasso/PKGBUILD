@@ -1,0 +1,40 @@
+# Maintainer: fincs <fincs.alt1@gmail.com>
+pkgname=picasso
+pkgver=2.7.0
+pkgrel=1
+pkgdesc='PICA200 shader assembler'
+arch=('any')
+url='https://github.com/fincs/picasso'
+license=('GPL')
+options=(!strip libtool staticlibs)
+source=("https://github.com/fincs/picasso/releases/download/v${pkgver}/picasso-${pkgver}.tar.bz2")
+sha256sums=('ac19e509195af9f2a474dacd4fd0dd4eb36f4c4f9e606badb798f8d2e469e481')
+groups=('3ds-dev')
+
+if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+  depends=('tool-dlls')
+fi
+
+build() {
+
+  cd picasso-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  ./configure --host=$CHOST --prefix=/opt/devkitpro/tools
+
+  make
+
+}
+
+package() {
+
+  cd picasso-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  make DESTDIR="$pkgdir" install-strip
+
+  install -Dm644 COPYING "$pkgdir"/opt/devkitpro/licenses/$pkgname/COPYING
+  
+}
