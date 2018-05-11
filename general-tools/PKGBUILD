@@ -1,18 +1,23 @@
 # Maintainer: WinterMute <davem@devkitpro.org>
 pkgname=general-tools
 pkgver=1.0.2
-pkgrel=1
+pkgrel=2
 pkgdesc='Tools for homebrew development)'
 arch=('any')
-url='https://github.com/devkitpro/general-tools'
+url="https://github.com/devkitpro/${pkgname}"
 license=('ISC')
 options=(!strip libtool staticlibs)
-source=("https://github.com/devkitpro/general-tools/releases/download/v${pkgver}/general-tools-${pkgver}.tar.bz2")
+source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.bz2")
 sha256sums=('333d76520c1a67fe5820c3a981fff93ea908462dc7022fb72915e447874e025f')
-groups=('gp32-dev' 'gba-dev' 'nds-dev' '3ds-dev' 'switch-dev')
+groups=('gp32-dev' 'gba-dev' 'nds-dev' '3ds-dev' 'switch-dev' 'gamecube-dev' 'wii-dev')
+
+if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+  depends=('tool-dlls')
+fi
+
 build() {
 
-  cd general-tools-$pkgver
+  cd $pkgname-$pkgver
 
   source ~/cross-build-$CHOST.sh
 
@@ -24,7 +29,7 @@ build() {
 
 package() {
 
-  cd general-tools-$pkgver
+  cd $pkgname-$pkgver
 
   source ~/cross-build-$CHOST.sh
 
