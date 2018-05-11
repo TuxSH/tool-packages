@@ -2,13 +2,13 @@
 pkgname=gamecube-tools
 pkgver=1.0.2
 pkgrel=1
-pkgdesc='ds tools'
+pkgdesc='gamecube tools'
 arch=('any')
 url="https://github.com/devkitpro/${pkgname}"
 license=('ISC')
 options=(!strip libtool staticlibs)
 source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.bz2")
-sha256sums=('52e45820d44168abe8e3a67718fd0c31bc33bfe2b4e3046aaa2d90a1342419bc')
+sha256sums=('07782c5037abf2fbd9c344ed381a965a2469aa856960730c914de41934fd7379')
 groups=('wii-dev' 'gamecube-dev')
 
 if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
