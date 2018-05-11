@@ -1,0 +1,40 @@
+# Maintainer: WinterMute <davem@devkitpro.org>
+pkgname=grit
+pkgver=0.8.15
+pkgrel=1
+pkgdesc='Game Raster Image Transmogrifier'
+arch=('any')
+url='https://github.com/devkitpro/grit'
+license=('GPL')
+options=(!strip libtool staticlibs)
+source=("https://github.com/devkitpro/grit/releases/download/v${pkgver}/grit-${pkgver}.tar.bz2")
+sha256sums=('0029ab20c5e8aab8c74bc569a9303e44159a358b52ea9826131091b08f6223a8')
+groups=('nds-dev' 'gba-dev')
+
+if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+  depends=('tool-dlls' 'freeimage-dll')
+fi
+
+build() {
+
+  cd grit-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  ./configure --host=$CHOST --prefix=/opt/devkitpro/tools
+
+  make
+
+}
+
+package() {
+
+  cd grit-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  make DESTDIR="$pkgdir" install-strip
+
+  install -Dm644 COPYING "$pkgdir"/opt/devkitpro/licenses/$pkgname/COPYING
+  
+}
