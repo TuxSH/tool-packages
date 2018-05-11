@@ -1,0 +1,40 @@
+# Maintainer: WinterMute <davem@devkitpro.org>
+pkgname=mmutil
+pkgver=1.8.7
+pkgrel=1
+pkgdesc='maxmod conversion utility'
+arch=('any')
+url='https://github.com/devkitpro/mmutil'
+license=('GPL')
+options=(!strip libtool staticlibs)
+source=("https://github.com/devkitpro/mmutil/releases/download/v${pkgver}/mmutil-${pkgver}.tar.bz2")
+sha256sums=('15309d457c0af0e33d78229a078d14147574c4105963b95099652cb2f490b033')
+groups=('nds-dev' 'gba-dev')
+
+if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+  depends=('tool-dlls')
+fi
+
+build() {
+
+  cd mmutil-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  ./configure --host=$CHOST --prefix=/opt/devkitpro/tools
+
+  make
+
+}
+
+package() {
+
+  cd mmutil-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  make DESTDIR="$pkgdir" install-strip
+
+  install -Dm644 COPYING "$pkgdir"/opt/devkitpro/licenses/$pkgname/COPYING
+  
+}
