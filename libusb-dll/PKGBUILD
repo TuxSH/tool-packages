@@ -1,0 +1,18 @@
+# Maintainer: WinterMute <davem@devkitpro.org>
+pkgname=libusb-dll
+pkgver=1.0.20
+pkgrel=1
+pkgdesc='libusb dll'
+arch=('any')
+url='https://libusb.info/'
+license=('LGPL')
+options=(!strip libtool staticlibs)
+source=("https://github.com/devkitPro/buildscripts/releases/download/support-files/libusb-1.0.20.tar.xz")
+sha256sums=('d4d9ebcda3c30f894aa71f7aca57cf8ecaa8173f37342f836cee0485b821368d')
+
+package() {
+
+  mkdir -p "$pkgdir"/opt/devkitpro/tools/bin
+  cp  "$srcdir"/libusb-1.0.dll "$pkgdir"/opt/devkitpro/tools/bin  
+  
+}
