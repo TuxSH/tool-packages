@@ -1,0 +1,40 @@
+# Maintainer: WinterMute <davem@devkitpro.org>
+pkgname=gamecube-tools
+pkgver=1.0.2
+pkgrel=1
+pkgdesc='ds tools'
+arch=('any')
+url="https://github.com/devkitpro/${pkgname}"
+license=('ISC')
+options=(!strip libtool staticlibs)
+source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.bz2")
+sha256sums=('52e45820d44168abe8e3a67718fd0c31bc33bfe2b4e3046aaa2d90a1342419bc')
+groups=('wii-dev' 'gamecube-dev')
+
+if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+  depends=('tool-dlls' 'freeimage-dll')
+fi
+
+build() {
+
+  cd $pkgname-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  ./configure --host=$CHOST --prefix=/opt/devkitpro/tools
+
+  make
+
+}
+
+package() {
+
+  cd $pkgname-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  make DESTDIR="$pkgdir" install-strip
+
+  install -Dm644 COPYING "$pkgdir"/opt/devkitpro/licenses/$pkgname/COPYING
+  
+}
