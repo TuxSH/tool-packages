@@ -1,0 +1,40 @@
+# Maintainer: WinterMute <davem@devkitpro.org>
+pkgname=wiiload
+pkgver=0.5.1
+pkgrel=1
+pkgdesc='ds tools'
+arch=('any')
+url="https://github.com/devkitpro/${pkgname}"
+license=('ISC')
+options=(!strip libtool staticlibs)
+source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.bz2")
+sha256sums=('673b436e9ca7c168f32962d38e28e2270099dd40d7bf5bb23a57c161d08891de')
+groups=('wii-dev')
+
+if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+  depends=('tool-dlls' 'freeimage-dll')
+fi
+
+build() {
+
+  cd $pkgname-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  ./configure --host=$CHOST --prefix=/opt/devkitpro/tools
+
+  make
+
+}
+
+package() {
+
+  cd $pkgname-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  make DESTDIR="$pkgdir" install-strip
+
+  install -Dm644 COPYING "$pkgdir"/opt/devkitpro/licenses/$pkgname/COPYING
+  
+}
