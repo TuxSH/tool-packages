@@ -1,0 +1,40 @@
+# Maintainer: WinterMute <davem@devkitpro.org>
+pkgname=3dslink
+pkgver=0.5.2
+pkgrel=2
+pkgdesc='3ds tools'
+arch=('any')
+url="https://github.com/devkitpro/${pkgname}"
+license=('ISC')
+options=(!strip libtool staticlibs)
+source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.bz2")
+sha256sums=('9a76a8b91bb7f65b22e4c311d403d1ac2ccdd6f5228e41bb84189f4bc8a20e81')
+groups=('3ds-dev')
+
+if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+  depends=('tool-dlls')
+fi
+
+build() {
+
+  cd $pkgname-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  ./configure --host=$CHOST --prefix=/opt/devkitpro/tools
+
+  make
+
+}
+
+package() {
+
+  cd $pkgname-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  make DESTDIR="$pkgdir" install-strip
+
+  install -Dm644 COPYING "$pkgdir"/opt/devkitpro/licenses/$pkgname/COPYING
+  
+}
