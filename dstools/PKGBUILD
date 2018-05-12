@@ -1,6 +1,6 @@
 # Maintainer: WinterMute <davem@devkitpro.org>
 pkgname=dstools
-pkgver=1.2.0
+pkgver=1.2.1
 pkgrel=1
 pkgdesc='ds tools'
 arch=('any')
@@ -8,7 +8,7 @@ url="https://github.com/devkitpro/${pkgname}"
 license=('ISC')
 options=(!strip libtool staticlibs)
 source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.bz2")
-sha256sums=('edb1cf2cc68aa620298016bf3956ce29bb072d2fa6b513bf3e37a4165a290c89')
+sha256sums=('1e57ed5286def42be480b5463a15125bfd256ddfea2c800eb3c283bded60f3d2')
 groups=('nds-dev')
 
 if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
