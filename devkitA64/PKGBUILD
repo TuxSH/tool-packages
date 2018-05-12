@@ -1,0 +1,33 @@
+# Maintainer: WinterMute <davem@devkitpro.org>
+pkgname=devkitA64
+pkgver=r9
+pkgrel=1
+pkgdesc='Toolchain for Nintendo Switch homebrew development'
+arch=('any')
+url='https://devkitpro.org'
+license=('GPL')
+options=(!strip libtool staticlibs)
+
+if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+  source=("https://github.com/devkitPro/buildscripts/releases/download/devkitA64_${pkgver}/devkitA64_${pkgver}-win64.tar.xz")
+  sha256sums=('ceacde40b9276dbaf18af7bafe7f3e9822223f6d78b0d8f5116fae7213c45a59')
+fi
+
+if [ "$CHOST" = "x86_64-apple-darwin15" ]; then
+  source=("https://github.com/devkitPro/buildscripts/releases/download/devkitA64_${pkgver}/devkitA64_${pkgver}-osx.tar.xz")
+  sha256sums=('0812a88d00bcf45805c3522261e6bfcfd79364ecd7724606fcf9226c06a03729')
+fi
+
+if [ "$CHOST" = "x86_64-pc-linux-gnu" ]; then
+  source=("https://github.com/devkitPro/buildscripts/releases/download/devkitA64_${pkgver}/devkitA64_${pkgver}-linux.tar.xz")
+  sha256sums=('f3bc5ee46c866e2f2b75478a1bcf8b0fe8a094a47e6444d1c5c84159a93033c1')
+fi
+
+groups=('switch-dev')
+
+package() {
+
+  mkdir -p "$pkgdir"/opt/devkitpro
+  cp -R devkitA64 "$pkgdir"/opt/devkitpro  
+  
+}
