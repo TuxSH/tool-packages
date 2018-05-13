@@ -1,0 +1,33 @@
+# Maintainer: WinterMute <davem@devkitpro.org>
+pkgname=devkitARM
+pkgver=r48
+pkgrel=1
+pkgdesc='Toolchain for ARM based development'
+arch=('any')
+url='https://devkitpro.org'
+license=('GPL')
+options=(!strip libtool staticlibs)
+
+if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+  source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-win64.tar.xz")
+  sha256sums=('779e12d663fea2f822a287119150da34539d9a6662062df205a3c8413434c4cc')
+fi
+
+if [ "$CHOST" = "x86_64-apple-darwin15" ]; then
+  source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-osx.tar.xz")
+  sha256sums=('205fb0ea0ef0b59d82bbff573418f41be9a6589ca7ba3f715f9e318b7daee5eb')
+fi
+
+if [ "$CHOST" = "x86_64-pc-linux-gnu" ]; then
+  source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-linux.tar.xz")
+  sha256sums=('19d294a67e950c92928e5fea110207d1f0d2b89b84d7ce6d153ae500a102b770')
+fi
+
+groups=('gp32-dev' 'gba-dev' 'nds-dev' '3ds-dev')
+
+package() {
+
+  mkdir -p "$pkgdir"/opt/devkitpro
+  cp -R "$pkgname" "$pkgdir"/opt/devkitpro  
+  
+}
