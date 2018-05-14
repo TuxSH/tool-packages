@@ -1,0 +1,18 @@
+# Maintainer: WinterMute <davem@devkitpro.org>
+pkgname=devkit-env
+pkgver=1.0.0
+pkgrel=1
+pkgdesc='environment settings for devkitPro supplied tools'
+arch=('any')
+url='https://devkitpro.org'
+license=('GPL')
+source=("devkit-env.sh")
+sha256sums=('812c9d59d86dd34ddb64ec1190f53832e7cac04388d2a413e931e2a774660908')
+groups=('gp32-dev' 'gba-dev' 'nds-dev' '3ds-dev' 'wii-dev' 'gamecube-dev' 'switch-dev')
+
+package() {
+
+  mkdir -p "$pkgdir"/etc/profile.d
+  cp  "$srcdir"/devkit-env.sh "$pkgdir"/etc/profile.d  
+  
+}
