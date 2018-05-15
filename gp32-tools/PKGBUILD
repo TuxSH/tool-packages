@@ -1,0 +1,40 @@
+# Maintainer: WinterMute <davem@devkitpro.org>
+pkgname=gp32-tools
+pkgver=1.0.3
+pkgrel=1
+pkgdesc='gp32 tools'
+arch=('any')
+url="https://github.com/devkitpro/${pkgname}"
+license=('GPL')
+options=(!strip libtool staticlibs)
+source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.bz2")
+sha256sums=('3678a5eafaa51bd075b44b06c8a68115bb0b85e09e95574b94528a7dcca2feb3')
+groups=('gp32-dev')
+
+if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+  depends=('tool-dlls')
+fi
+
+build() {
+
+  cd $pkgname-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  ./configure --host=$CHOST --prefix=/opt/devkitpro/tools
+
+  make
+
+}
+
+package() {
+
+  cd $pkgname-$pkgver
+
+  source ~/cross-build-$CHOST.sh
+
+  make DESTDIR="$pkgdir" install-strip
+
+  install -Dm644 COPYING "$pkgdir"/opt/devkitpro/licenses/$pkgname/COPYING
+  
+}
