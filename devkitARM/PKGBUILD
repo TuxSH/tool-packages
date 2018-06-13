@@ -1,7 +1,7 @@
 # Maintainer: WinterMute <davem@devkitpro.org>
 pkgname=devkitARM
 pkgver=r49
-pkgrel=1
+pkgrel=2
 pkgdesc='Toolchain for ARM based development'
 arch=('any')
 url='https://devkitpro.org'
@@ -10,17 +10,17 @@ options=(!strip libtool staticlibs)
 
 if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
   source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-win64.tar.xz")
-  sha256sums=('9d705992af1ebf327d8be00590a4b83ac92828e3e179b52d7d06722b6815cd52')
+  sha256sums=('c0c848a807bad16c1602419ed9450fab4ea0dd64c64a425a22438df9d7b17647')
 fi
 
 if [ "$CHOST" = "x86_64-apple-darwin15" ]; then
   source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-osx.tar.xz")
-  sha256sums=('f70cf6e8b36ac9e2081a8b9a476c04fb6c75b6811fd5ddf64cf034021e6ca77b')
+  sha256sums=('734c05670d4e452949ee2b754d2abc4559f833a5ba66c4eb0dacfe8e9c9976c1')
 fi
 
 if [ "$CHOST" = "x86_64-pc-linux-gnu" ]; then
   source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-linux.tar.xz")
-  sha256sums=('c68e3a60c81c317c49c56f2f9050f124ad83d4e1ee6154f2f74caa8432751f3a')
+  sha256sums=('8935d8b8f20474b9aa0e80f1f86c6af3614595978a7b65dc4707a6d9bce01998')
 fi
 
 groups=('gp32-dev' 'gba-dev' 'nds-dev' '3ds-dev')
