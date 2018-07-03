@@ -1,6 +1,6 @@
 # Maintainer: WinterMute <davem@devkitpro.org>
 pkgname=switch-tools
-pkgver=1.4.0
+pkgver=1.4.1
 pkgrel=3
 pkgdesc='Tools for Nintendo Switch homebrew development)'
 arch=('any')
@@ -8,7 +8,7 @@ url="https://github.com/switchbrew/${pkgname}"
 license=('ISC')
 options=(!strip libtool staticlibs)
 source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.bz2")
-sha256sums=('476c3dfe9d060f74da47d22bf929e1de5e3a6f11f26ee0dc516c9101ed3f0239')
+sha256sums=('81b605787c24b500c51414e02fe8af9aff0de2d9aace66c01d05b382f060df9e')
 groups=('switch-dev')
 
 if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
