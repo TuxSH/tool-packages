@@ -1,6 +1,6 @@
 # Maintainer: WinterMute <davem@devkitpro.org>
 pkgname=gba-tools
-pkgver=1.1.0
+pkgver=1.2.0
 pkgrel=1
 pkgdesc='gba tools'
 arch=('any')
@@ -8,7 +8,7 @@ url="https://github.com/devkitpro/${pkgname}"
 license=('GPL')
 options=(!strip libtool staticlibs)
 source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.bz2")
-sha256sums=('dd302d04f3e08eed3761ebc02bb8c294e951b04fd5a6064ca47148533493e226')
+sha256sums=('516e5037e48b3dbaaa41291f83146d039b35b04ccc6887a7e92858ff59ea6daa')
 groups=('gba-dev')
 
 if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
