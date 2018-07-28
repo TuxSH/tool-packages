@@ -1,5 +1,5 @@
 pkgname=devkitA64
-pkgver=r11
+pkgver=r12
 pkgrel=2
 pkgdesc='Toolchain for Nintendo Switch homebrew development'
 arch=('any')
@@ -7,19 +7,19 @@ url='https://devkitpro.org'
 license=('GPL')
 options=(!strip libtool staticlibs)
 
-if [ "$CHOST" = "x86_64-apple-darwin15" ]; then
-  source=("https://github.com/devkitPro/buildscripts/releases/download/devkitA64_${pkgver}/devkitA64_${pkgver}-2-osx.tar.xz")
-  sha256sums=('f726b7ec903e5de68de42b936e5c8b32da9faaf2fd5c9078aa654752fa232e66')
+if [ "$CHOST" = "x86_64-pc-linux-gnu" ]; then
+  source=("https://github.com/devkitPro/buildscripts/releases/download/devkitA64_${pkgver}/devkitA64_${pkgver}-${pkgrel}-linux.tar.xz")
+  sha256sums=('819557da3ba2d69b007e8c90579a8d9f86498b2ac3ad984740a0971d385fa3da')
 fi
 
-if [ "$CHOST" = "x86_64-pc-linux-gnu" ]; then
-  source=("https://github.com/devkitPro/buildscripts/releases/download/devkitA64_${pkgver}/devkitA64_${pkgver}-2-linux.tar.xz")
-  sha256sums=('ddf885fd303384d7e149e4948601c641bfcc90f2c1ee84517d121186b3e4b495')
+if [ "$CHOST" = "x86_64-apple-darwin15" ]; then
+  source=("https://github.com/devkitPro/buildscripts/releases/download/devkitA64_${pkgver}/devkitA64_${pkgver}-${pkgrel}-osx.tar.xz")
+  sha256sums=('7c81a5c1fc447cecc52fb13b9285a9c20ef66cf63e8b67ddf8464071b2543d46')
 fi
 
 if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
-  source=("https://github.com/devkitPro/buildscripts/releases/download/devkitA64_${pkgver}/devkitA64_${pkgver}-2-win64.tar.xz")
-  sha256sums=('cd9129aaa11b070871f4feec2b8d38e9ada78506deec4711f8c3cb9f626795b3')
+  source=("https://github.com/devkitPro/buildscripts/releases/download/devkitA64_${pkgver}/devkitA64_${pkgver}-${pkgrel}-win64.tar.xz")
+  sha256sums=('2c5aed21ab3ba842f21f3e7d232dea1db23672700536e90d3173c0a1d1586ce3')
 fi
 
 groups=('switch-dev')
