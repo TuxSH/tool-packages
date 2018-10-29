@@ -1,14 +1,14 @@
 # Maintainer: WinterMute <davem@devkitpro.org>
 pkgname=tex3ds
-pkgver=1.0.0
-pkgrel=3
+pkgver=1.0.1
+pkgrel=1
 pkgdesc='3ds texture conversion tool'
 arch=('any')
 url="https://github.com/mtheall/${pkgname}"
 license=('ISC')
 options=(!strip libtool staticlibs)
 source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.bz2")
-sha256sums=('c1fb57698333b73a299a8ac14413e8c99f169ca958ae14c56a713d510a867ed3')
+sha256sums=('714739bb7ed3d97b04f454eec782837adaf3f437e244df1c2c51c2a029a3afdc')
 groups=('3ds-dev')
 
 if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
