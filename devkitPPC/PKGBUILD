@@ -1,6 +1,6 @@
 # Maintainer: WinterMute <davem@devkitpro.org>
 pkgname=devkitPPC
-pkgver=r32
+pkgver=r33
 pkgrel=1
 pkgdesc='Toolchain for Nintendo Gamecube & Wii homebrew development'
 arch=('any')
@@ -10,17 +10,17 @@ options=(!strip libtool staticlibs)
 
 if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
   source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-win64.tar.xz")
-  sha256sums=('6591d4b759bd5c7bdd275a46e78186840f98d9bff737b53371969f3517009ee8')
+  sha256sums=('161f3217a0df1fa93fe1be3ce01bfec61085ff7db52c3840821e53104da7aea6')
 fi
 
 if [ "$CHOST" = "x86_64-apple-darwin15" ]; then
   source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-osx.tar.xz")
-  sha256sums=('354e0293ef48c0df2bd8d16e0a2deb2cb700ac7bfa4ac2e1f0d5e9d4273661c4')
+  sha256sums=('072aa1b17312818a85f9bcb35ff1b3c61fe53d6a4baa3faf210916138df02bf4')
 fi
 
 if [ "$CHOST" = "x86_64-pc-linux-gnu" ]; then
   source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-linux.tar.xz")
-  sha256sums=('78bb6797ea271763f9b05801172bf245a5647416c46d6dcedb5875e46385d523')
+  sha256sums=('f62f1766a4977b61d22dfc0ed090e40041756ca19531b05bd4876d1be12be3c4')
 fi
 
 groups=('gamecube-dev' 'wii-dev')
