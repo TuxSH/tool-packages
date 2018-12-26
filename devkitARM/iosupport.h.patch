@@ -1,0 +1,23 @@
+--- iosupport.h.orig	2018-12-26 17:18:24.957315562 +0000
++++ iosupport.h	2018-12-26 17:21:49.215000592 +0000
+@@ -10,6 +10,7 @@
+ #include <reent.h>
+ #include <sys/stat.h>
+ #include <sys/statvfs.h>
++#include <sys/dirent.h>
+ #include <time.h>
+ 
+ enum	{
+@@ -26,12 +27,6 @@
+ 	void *fileStruct;
+ } __handle;
+ 
+-/* Directory iterator for mantaining state between dir* calls */
+-typedef struct {
+-    int device;
+-    void *dirStruct;
+-} DIR_ITER;
+-
+ typedef struct {
+ 	const char *name;
+ 	size_t structSize;
