@@ -1,7 +1,7 @@
 # Maintainer: WinterMute <davem@devkitpro.org>
 pkgname=devkitARM
 pkgver=r50
-pkgrel=3
+pkgrel=4
 pkgdesc='Toolchain for ARM based development'
 arch=('any')
 url='https://devkitpro.org'
@@ -23,10 +23,9 @@ if [ "$CHOST" = "x86_64-pc-linux-gnu" ]; then
   sha256sums=('43c912f5007d889a8585973f02de226daa4efcfc91fa472e1d315095a56327d9')
 fi
 
-source+=("dirent.h.patch" "iosupport.h.patch")
+source+=("iosupport.h.patch")
 sha256sums+=(
-  '223cfc90a91f234171a3721d4b91ce33db8421b29e5953a2a88e7466afc0f843'
-  '2257e16b101d985c1cddcedf79463313b245ce5b836627f09b6e0ade3555882d'
+  '573459949eda041af572572aaf10bd09d8a7be464f1259c21b426aa0376ef8bb'
 )
 
 groups=('gp32-dev' 'gba-dev' 'nds-dev' '3ds-dev')
@@ -35,7 +34,6 @@ package() {
 
   mkdir -p "$pkgdir"/opt/devkitpro
   cp -R "$pkgname" "$pkgdir"/opt/devkitpro
-  patch -i "$srcdir"/dirent.h.patch "$pkgdir"/opt/devkitpro/devkitARM/arm-none-eabi/include/sys/dirent.h  
   patch -i "$srcdir"/iosupport.h.patch "$pkgdir"/opt/devkitpro/devkitARM/arm-none-eabi/include/sys/iosupport.h  
   
 }
