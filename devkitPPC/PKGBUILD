@@ -13,6 +13,11 @@ if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
   sha256sums=('161f3217a0df1fa93fe1be3ce01bfec61085ff7db52c3840821e53104da7aea6')
 fi
 
+if [ "$CHOST" = "i686-w64-mingw32" ]; then
+  source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-win32.tar.xz")
+  sha256sums=('f20df258c6cff10242e2cfcbcd2049db2a67497a015d10f36b2c59bb3682bd07')
+fi
+
 if [ "$CHOST" = "x86_64-apple-darwin15" ]; then
   source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-osx.tar.xz")
   sha256sums=('072aa1b17312818a85f9bcb35ff1b3c61fe53d6a4baa3faf210916138df02bf4')
