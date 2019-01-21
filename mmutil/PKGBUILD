@@ -11,7 +11,7 @@ source=("https://github.com/devkitpro/mmutil/releases/download/v${pkgver}/mmutil
 sha256sums=('15309d457c0af0e33d78229a078d14147574c4105963b95099652cb2f490b033')
 groups=('nds-dev' 'gba-dev')
 
-if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+if [[ "$CHOST" == *"-w64-mingw32" ]]; then
   depends=('tool-dlls')
 fi
 
