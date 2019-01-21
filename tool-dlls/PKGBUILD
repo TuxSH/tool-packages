@@ -7,8 +7,18 @@ arch=('any')
 url='https://devkitpro.org'
 license=('GPL')
 options=(!strip libtool staticlibs)
-source=("https://github.com/devkitPro/buildscripts/releases/download/support-files/tool-dlls-1.0.tar.xz")
-sha256sums=('3b6cbb68401cce20712c8530091e3f0bcabb8a9ea07a76dd8629eab9a0aa55e2')
+
+
+if [ "$CHOST" = "i686-w64-mingw32" ]; then
+  source=("https://github.com/devkitPro/buildscripts/releases/download/support-files/tool32-dlls-1.0.tar.xz")
+  sha256sums=('35b2b96318950b700414168ffe992c0124348050d333c1dddf418e99fec13045')
+elif [ "$CHOST" = "x86-w64-mingw32" ]; then
+  source=("https://github.com/devkitPro/buildscripts/releases/download/support-files/tool-dlls-1.0.tar.xz")
+  sha256sums=('3b6cbb68401cce20712c8530091e3f0bcabb8a9ea07a76dd8629eab9a0aa55e2')
+else
+  echo "CHOST i686-w64-mingw32 or x86-w64-mingw32 required";
+  exit 22
+fi
 
 package() {
 
