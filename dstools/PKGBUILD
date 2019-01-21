@@ -11,7 +11,7 @@ source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.bz2")
 sha256sums=('1e57ed5286def42be480b5463a15125bfd256ddfea2c800eb3c283bded60f3d2')
 groups=('nds-dev')
 
-if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+if [[ "$CHOST" == *"-w64-mingw32" ]]; then
   depends=('tool-dlls')
 fi
 
