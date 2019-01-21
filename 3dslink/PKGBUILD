@@ -8,10 +8,10 @@ url="https://github.com/devkitpro/${pkgname}"
 license=('ISC')
 options=(!strip libtool staticlibs)
 source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.bz2")
-sha256sums=('9a76a8b91bb7f65b22e4c311d403d1ac2ccdd6f5228e41bb84189f4bc8a20e81')
+sha256sums=('d888a2da99e8159e27e2dcf44aa5672acddff8a3a50947a880b9808d7b2ecfd7')
 groups=('3ds-dev')
 
-if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+if [[ "$CHOST" == *"-w64-mingw32" ]]; then
   depends=('tool-dlls')
 fi
 
