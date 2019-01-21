@@ -11,7 +11,7 @@ source=("https://github.com/fincs/picasso/releases/download/v${pkgver}/picasso-$
 sha256sums=('ac19e509195af9f2a474dacd4fd0dd4eb36f4c4f9e606badb798f8d2e469e481')
 groups=('3ds-dev')
 
-if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+if [[ "$CHOST" == *"-w64-mingw32" ]]; then
   depends=('tool-dlls')
 fi
 
