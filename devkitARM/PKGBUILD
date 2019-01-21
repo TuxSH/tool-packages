@@ -8,6 +8,11 @@ url='https://devkitpro.org'
 license=('GPL')
 options=(!strip libtool staticlibs)
 
+if [ "$CHOST" = "i686-w64-mingw32" ]; then
+  source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-win32.tar.xz")
+  sha256sums=('282274a962db740d61cebb900e9a317fd88783e91cfedcc4787c37bdb7554d1b')
+fi
+
 if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
   source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-win64.tar.xz")
   sha256sums=('b9d04adf577aaaa26e10a12f0f0364dd9579e9d3ef1d15265553134214a8f837')
