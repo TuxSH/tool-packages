@@ -7,8 +7,17 @@ arch=('any')
 url='http://freeimage.sourceforge.net'
 license=('GPL')
 options=(!strip libtool staticlibs)
-source=("https://github.com/devkitPro/buildscripts/releases/download/support-files/FreeImage-3.17.0.tar.xz")
-sha256sums=('88fd178daaa90f7706167faf76396afb091150ef61eb51c4784d6693ab232c70')
+
+if [ "$CHOST" = "i686-w64-mingw32" ]; then
+  source=("https://github.com/devkitPro/buildscripts/releases/download/support-files/FreeImage32-3.17.0.tar.xz")
+  sha256sums=('d31a2b7fc94ee3b84b07f57e48b483c9a3188b4e8c4370099c6bf690de5d51b5')
+elif [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+  source=("https://github.com/devkitPro/buildscripts/releases/download/support-files/FreeImage-3.17.0.tar.xz")
+  sha256sums=('4f9d01f22dbd8ddbafe4cfee3564545d9847d293158e3f73bad747aa931e5270')
+else
+  echo "CHOST i686-w64-mingw32 or x86-w64-mingw32 required";
+  exit 22
+fi
 
 package() {
 
