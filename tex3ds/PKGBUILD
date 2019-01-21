@@ -11,7 +11,7 @@ source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.bz2")
 sha256sums=('714739bb7ed3d97b04f454eec782837adaf3f437e244df1c2c51c2a029a3afdc')
 groups=('3ds-dev')
 
-if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+if [[ "$CHOST" = *"-w64-mingw32" ]]; then
   depends=('tool-dlls')
 fi
 
