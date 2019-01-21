@@ -11,7 +11,7 @@ source=("${url}/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.bz2")
 sha256sums=('516e5037e48b3dbaaa41291f83146d039b35b04ccc6887a7e92858ff59ea6daa')
 groups=('gba-dev')
 
-if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+if [[ "$CHOST" == *"-w64-mingw32" ]]; then
   depends=('tool-dlls')
 fi
 
