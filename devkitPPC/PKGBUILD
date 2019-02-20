@@ -1,34 +1,36 @@
 # Maintainer: WinterMute <davem@devkitpro.org>
 pkgname=devkitPPC
-pkgver=r33
+pkgver=r34
 pkgrel=1
 pkgdesc='Toolchain for Nintendo Gamecube & Wii homebrew development'
 arch=('any')
 url='https://devkitpro.org'
-license=('GPL')
+license=('Various')
 options=(!strip libtool staticlibs)
 
-if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
-  source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-win64.tar.xz")
-  sha256sums=('161f3217a0df1fa93fe1be3ce01bfec61085ff7db52c3840821e53104da7aea6')
-fi
-
-if [ "$CHOST" = "i686-w64-mingw32" ]; then
-  source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-win32.tar.xz")
-  sha256sums=('f20df258c6cff10242e2cfcbcd2049db2a67497a015d10f36b2c59bb3682bd07')
+if [ "$CHOST" = "x86_64-pc-linux-gnu" ]; then
+  source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-linux.tar.xz")
+  sha256sums=('2d16f74344d8617c07d12756de311cd4967092dfb90d6c2a5e2371eb4c2f5e9d')
 fi
 
 if [ "$CHOST" = "x86_64-apple-darwin15" ]; then
   source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-osx.tar.xz")
-  sha256sums=('072aa1b17312818a85f9bcb35ff1b3c61fe53d6a4baa3faf210916138df02bf4')
+  sha256sums=('38a9a29bd98aa7e40e0a341a6146f1332035ce4ab82222df72f1f5323dcd02b5')
 fi
 
-if [ "$CHOST" = "x86_64-pc-linux-gnu" ]; then
-  source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-linux.tar.xz")
-  sha256sums=('f62f1766a4977b61d22dfc0ed090e40041756ca19531b05bd4876d1be12be3c4')
+if [ "$CHOST" = "i686-w64-mingw32" ]; then
+  source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-win32.tar.xz")
+  sha256sums=('0c31cf8a8ed1570568d68472ef94b252fb6c18fd70248864cd4c580799b58edf')
 fi
 
-groups=('gamecube-dev' 'wii-dev')
+if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
+  source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-win64.tar.xz")
+  sha256sums=('04e6f34c89ee5114ddd85372f3fa45f0730d97ef7ea326b892d79af86874f620')
+fi
+
+groups=('gamecube-dev' 'wii-dev' 'wiiu-dev')
+
+depends=('devkitppc-rules')
 
 package() {
 
