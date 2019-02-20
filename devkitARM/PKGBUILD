@@ -1,7 +1,7 @@
 # Maintainer: WinterMute <davem@devkitpro.org>
 pkgname=devkitARM
-pkgver=r50
-pkgrel=4
+pkgver=r51
+pkgrel=1
 pkgdesc='Toolchain for ARM based development'
 arch=('any')
 url='https://devkitpro.org'
@@ -10,28 +10,23 @@ options=(!strip libtool staticlibs)
 
 if [ "$CHOST" = "i686-w64-mingw32" ]; then
   source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-win32.tar.xz")
-  sha256sums=('282274a962db740d61cebb900e9a317fd88783e91cfedcc4787c37bdb7554d1b')
+  sha256sums=('e81d41b5b687fbc442815f2795fb6bdcb04cc83138035c50ca66d8d1ff001444')
 fi
 
 if [ "$CHOST" = "x86_64-w64-mingw32" ]; then
   source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-win64.tar.xz")
-  sha256sums=('b9d04adf577aaaa26e10a12f0f0364dd9579e9d3ef1d15265553134214a8f837')
+  sha256sums=('a3ac9138b577b8e0a7d3d669e8d1afc45e9b1b9347c3d6d9d04356de4ed92116')
 fi
 
 if [ "$CHOST" = "x86_64-apple-darwin15" ]; then
   source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-osx.tar.xz")
-  sha256sums=('4b7cbb6eee3a160fd42fc2967861b115db780ee838b0a6817d4c0cffe85960d7')
+  sha256sums=('792642fe27c32a66acd68b2aa29dd633a613f49dcf4c2559b53b6bb4001a92bc')
 fi
 
 if [ "$CHOST" = "x86_64-pc-linux-gnu" ]; then
   source=("https://github.com/devkitPro/buildscripts/releases/download/${pkgname}_${pkgver}/${pkgname}_${pkgver}-linux.tar.xz")
-  sha256sums=('43c912f5007d889a8585973f02de226daa4efcfc91fa472e1d315095a56327d9')
+  sha256sums=('374ae3e4b0d933a2cb90970506a40928f05a438e48ca54b3fd9f2d4bb5eefa6f')
 fi
-
-source+=("iosupport.h.patch")
-sha256sums+=(
-  '573459949eda041af572572aaf10bd09d8a7be464f1259c21b426aa0376ef8bb'
-)
 
 groups=('gp32-dev' 'gba-dev' 'nds-dev' '3ds-dev')
 
@@ -39,6 +34,4 @@ package() {
 
   mkdir -p "$pkgdir"/opt/devkitpro
   cp -R "$pkgname" "$pkgdir"/opt/devkitpro
-  patch -i "$srcdir"/iosupport.h.patch "$pkgdir"/opt/devkitpro/devkitARM/arm-none-eabi/include/sys/iosupport.h  
-  
 }
